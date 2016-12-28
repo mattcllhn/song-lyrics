@@ -17,66 +17,33 @@ app.get('/',function(req, res){
 
 
 app.get('/scrape',function(req,res){
-  var body;
-  console.log('in the scrape url');
-  url = 'http://www.azlyrics.com/lyrics/michaelwsmith/amazinggrace.html';
-app.get(url, function(err, response,done,html){
-  if (err) {
-    console.log('there was an err');
+var  url = 'http://www.azlyrics.com/lyrics/michaelwsmith/amazinggrace.html';
 
-  }else{
-    // console.log('there was success');
-    var $ = cheerio.load(html);
-    // var authCode = $(".login-form > input").attr("value");
-    // var title, release, rating;
-    // var json = { title : "", release : "", rating : ""};
+request(url, function(error, response, html){
+  var objectToSend = {title:"", lyrics:{}};
+    if(!error){
+        var $ = cheerio.load(html);
 
-    console.log('this is the page',$('body'));
-    body = $('body');
-    // res.send(body);
+          objectToSend.title = $('.ringtone').next().text();
+          console.log('this is the title',objectToSend.title);
+          var unformattedLyrics = JSON.stringify($('.ringtone').next().next().next().next().text());
 
 
+          for (var i = 0; i < unformattedLyrics.length; i++) {
+            // console.log('index',unformattedLyrics[i]+unformattedLyrics[i+1]);
+            if(unformattedLyrics[i]+unformattedLyrics[i+1]=='/n'){
 
+              console.log('lyric added to bar');
 
-    // request.post({url: url,
-    //     form: {
-    //         "email": "dcalla@hotmail.com",
-    //         "password": "buster123",
-    //         "authURL": authCode,
-    //         "RememberMe": "on"
-    //     },
+            }else if(unformattedLyrics[i]=='/' && unformattedLyrics[i+1]=='n'&& unformattedLyrics[i+2]=='/'){
+              console.log('new bar');
+            }
+          }//for loop
+          // console.log('unformattedLyrics',JSON.stringify(unformattedLyrics));
+          // console.log('these are the lyrics'+objectToSend.lyrics+'which is: '+ typeof(objectToSend.lyrics));
 
-    //     headers:{
-    //         'User-Agent': "NodeScrape"
-    //     }
-    //   }, function(err, response, body){
-    //         var cookies = response.headers['set-cookie'];
-    //         console.log('response.headers',response.headers);
-    //         request({url: "https://www.netflix.com/browse", headers: {'Cookie': cookies, 'User-Agent': "NodeScrape"}}, function(error, response, body){
-    //             var $ = cheerio.load(body);
-    //             // $('body').filter(function(){
-    //             //   var data = $(this);
-    //             //   console.log('data logged',data.children);
-    //             var data = $("html").text();
-    //             // console.log('data logged -------->',data);
-    //             res.json(data);
-
-    //         });
-
-    //       });
-
-      // title = data.children().first().text();
-      // json.title = title;
-      // console.log('json',json);
-      // json.stringify(data);
-
-    // });//body on click
-  }//else
-}).on('end',function(){
-  res.send(body);
-  done();
-});
-
-
+        }//if bracket
+        res.send(objectToSend);
+      });//request
 });//scrape url
 app.use(express.static('public'));
