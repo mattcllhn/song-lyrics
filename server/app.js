@@ -4,6 +4,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var app = express();
 var path = require('path');
+var lyricFormatter = require('./modules/lyricFormatter');
 
 app.listen('3000', function(){
   console.log('listening on 3000');
@@ -22,6 +23,7 @@ var  url = 'http://www.azlyrics.com/lyrics/willienelson/amazinggrace.html';
 request(url, function(error, response, html){
   var objectToSend = {title:"", lyrics:{}};
     if(!error){
+      lyricFormatter('xyz');
         var $ = cheerio.load(html);
         // console.log($);
         var body = $('body').html();
