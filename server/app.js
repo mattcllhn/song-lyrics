@@ -17,32 +17,28 @@ app.get('/',function(req, res){
 
 
 app.get('/scrape',function(req,res){
-var  url = 'http://www.azlyrics.com/lyrics/michaelwsmith/amazinggrace.html';
+var  url = 'http://www.azlyrics.com/lyrics/willienelson/amazinggrace.html';
 
 request(url, function(error, response, html){
   var objectToSend = {title:"", lyrics:{}};
     if(!error){
         var $ = cheerio.load(html);
-
+        // console.log($);
+        var body = $('body').html();
+        console.log('body',body);
           objectToSend.title = $('.ringtone').next().text();
-          console.log('this is the title',objectToSend.title);
-          var unformattedLyrics = JSON.stringify($('.ringtone').next().next().next().next().text());
+          // console.log('this is the title',objectToSend.title);
+        objectToSend.lyrics = $('.ringtone').next().next().next().next().html();
+        console.log('lyrics '+ objectToSend.lyrics+' which is typeof '+typeof(objectToSend.lyrics));
+        objectToSend.body = body;
+        // var newArray = objectToSend.lyrics.replace(/ *\[[^\]]*]/g, '');
+        // console.log(newArray);
+        // newArray = newArray.split('"');
+        // console.log(newArray);
+        // var poo = newArray.split('\r');
+        // console.log(newArray);
 
-
-          for (var i = 0; i < unformattedLyrics.length; i++) {
-            // console.log('index',unformattedLyrics[i]+unformattedLyrics[i+1]);
-            if(unformattedLyrics[i]+unformattedLyrics[i+1]=='/n'){
-
-              console.log('lyric added to bar');
-
-            }else if(unformattedLyrics[i]=='/' && unformattedLyrics[i+1]=='n'&& unformattedLyrics[i+2]=='/'){
-              console.log('new bar');
-            }
-          }//for loop
-          // console.log('unformattedLyrics',JSON.stringify(unformattedLyrics));
-          // console.log('these are the lyrics'+objectToSend.lyrics+'which is: '+ typeof(objectToSend.lyrics));
-
-        }//if bracket
+        }//if
         res.send(objectToSend);
       });//request
 });//scrape url

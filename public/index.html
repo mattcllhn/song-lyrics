@@ -9,8 +9,12 @@
   <body ng-app = "myApp">
     <h1>hellp world</h1>
     <div ng-controller = "scrapeController" class="">
+        <h3>{{song.title}}</h3>
+        <p>{{song.lyrics}}</p>
 
-    <input type="text" name="name" value=""><button type="button" name="button" ng-click = "scrape()"> click </button>
+    <input type="text" name="name" placeholder="artist name" ng-model = "artistName">
+    <input type="text" name="name" placeholder="song name" ng-model = "songName">
+    <button type="button" name="button" ng-click = "scrape(artistName,songName)"> click </button>
   </div>
 
   </body>
