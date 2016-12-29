@@ -43,3 +43,4 @@ request(url, function(error, response, html){
       });//request
 });//scrape url
 app.use(express.static('public'));
+asdfasdfasdfasdfasdf
