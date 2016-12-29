@@ -11,9 +11,11 @@
     <div ng-controller = "scrapeController" class="">
 
         <h3>{{song.title}}</h3>
-        <div  ng-repeat = "x in song.lyrics" class="">
+        <div  ng-repeat = "key in song.lyrics" class="">
+          <div ng-repeat = "verse in key" class="">
+            <p >{{verse}}</p>
+          </div>
 
-        <p >{{x}}</p>
 
       </div>
     <input type="text" name="name" placeholder="artist name" ng-model = "artistName">
