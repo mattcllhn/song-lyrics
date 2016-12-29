@@ -32,8 +32,8 @@ request(url, function(error, response, html){
         // console.log('body',body);
           objectToSend.title = $('.ringtone').next().text();
           console.log('this is the title',objectToSend.title);
-        objectToSend.lyrics = lyricFormatter($('.ringtone').next().next().next().next().html());
-        console.log(domTraverser($('.ringtone')));
+        objectToSend.lyrics = lyricFormatter(domTraverser($('.ringtone')));
+        // console.log(domTraverser($('.ringtone')));
 
 
 
