@@ -5,6 +5,7 @@ var cheerio = require('cheerio');
 var app = express();
 var path = require('path');
 var lyricFormatter = require('./modules/lyricFormatter');
+var domTraverser = require('./modules/domTraverser');
 
 app.listen('3000', function(){
   console.log('listening on 3000');
@@ -19,8 +20,8 @@ app.get('/',function(req, res){
 
 app.get('/scrape',function(req,res){
 // var  url = 'http://www.azlyrics.com/lyrics/willienelson/amazinggrace.html';
-var url = 'http://www.azlyrics.com/lyrics/jeffbuckley/hallelujah.html';
-// var url = 'http://www.azlyrics.com/lyrics/rachelplatten/heyheyhallelujah.html';
+// var url = 'http://www.azlyrics.com/lyrics/jeffbuckley/hallelujah.html';
+var url = 'http://www.azlyrics.com/lyrics/rachelplatten/heyheyhallelujah.html';
 
 request(url, function(error, response, html){
   var objectToSend = {title:"", lyrics:{}};
@@ -32,7 +33,7 @@ request(url, function(error, response, html){
           objectToSend.title = $('.ringtone').next().text();
           console.log('this is the title',objectToSend.title);
         objectToSend.lyrics = lyricFormatter($('.ringtone').next().next().next().next().html());
-
+        console.log(domTraverser($('.ringtone')));
 
 
 

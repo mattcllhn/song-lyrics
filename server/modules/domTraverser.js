@@ -1,5 +1,5 @@
-var domTraverser = function(dataIn){
-          var currentElem = $('.ringtone').next();
+function domTraverser(dataIn){
+          var currentElem = dataIn.next();
           // console.log($('.ringtone').next($('div'))[0].name);
 
         for (var i = 0; i<10; i++) {
@@ -8,11 +8,12 @@ var domTraverser = function(dataIn){
           if (tag == 'div') {
             console.log(currentElem.text());
             i=11;
+            return currentElem.html();
           }else{
           currentElem = currentElem.next();
 
           }
-         
+
         }
 }
-module.exports domTraverser
+module.exports = domTraverser;
