@@ -1,6 +1,6 @@
 function lyricFormatter(dataIn){
   var lyrics = dataIn;
-  var arrayToSend;
+  var arrayToSend = [];
 //takes out apostrophes
 lyrics = lyrics.replace(/&apos;/g,"'");
 //removes text in square brackets
@@ -13,11 +13,13 @@ lyrics = lyrics.replace(/\r/g, '');
 var lyricArray = lyrics.split('\n\n');
 //loop through and create subarrays out of lines
 for (var i = 0; i < lyricArray.length; i++) {
-  lyricArray[i] = lyricArray[i].split('\n');
+  if(lyricArray[i].length>1){
+  var verse = lyricArray[i].split('\n');
+  arrayToSend.push(verse);
   console.log('in the loop bro \n',lyricArray[i]);
-
+}
 
 }//for loop
-  return lyricArray;
+  return arrayToSend;
 }
 module.exports = lyricFormatter;
