@@ -20,8 +20,8 @@ app.get('/',function(req, res){
 
 app.get('/scrape',function(req,res){
 // var  url = 'http://www.azlyrics.com/lyrics/willienelson/amazinggrace.html';
-// var url = 'http://www.azlyrics.com/lyrics/jeffbuckley/hallelujah.html';
-var url = 'http://www.azlyrics.com/lyrics/rachelplatten/heyheyhallelujah.html';
+var url = 'http://www.azlyrics.com/lyrics/jeffbuckley/hallelujah.html';
+// var url = 'http://www.azlyrics.com/lyrics/rachelplatten/heyheyhallelujah.html';
 
 request(url, function(error, response, html){
   var objectToSend = {title:"", lyrics:{}};
