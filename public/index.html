@@ -9,19 +9,20 @@
   <body ng-app = "myApp">
     <h1>hellp world</h1>
     <div ng-controller = "scrapeController" class="">
+      <input type="text" name="name" placeholder="artist name" ng-model = "artistName">
+      <input type="text" name="name" placeholder="song name" ng-model = "songName">
+      <button type="button" name="button" ng-click = "scrape(artistName,songName)"> click </button>
 
         <h3>{{song.title}}</h3>
           <div ng-repeat = "verse in lyrics" class="">
             <!-- <ul ng-repeat = "line in verse" class=""> -->
             <ul>
-              <li ng-repeat = "lyric in verse">{{lyric}}</li>
+              <li ng-repeat = "lyric in verse track by $index">{{lyric}}</li>
             </ul>
           </div>
 
 
-    <input type="text" name="name" placeholder="artist name" ng-model = "artistName">
-    <input type="text" name="name" placeholder="song name" ng-model = "songName">
-    <button type="button" name="button" ng-click = "scrape(artistName,songName)"> click </button>
+
   </div>
 
   </body>

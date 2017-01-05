@@ -4,7 +4,7 @@ var myApp = angular.module('myApp',[]);
   myApp.controller("scrapeController",['$scope','$http',function($scope,$http){
     console.log('NG');
     $scope.scrape = function(artistName,songName){
-      // console.log('artistName: '+artistName+' songName: '+songName);
+      console.log('artistName: '+encodeURIComponent(artistName)+' songName: '+encodeURIComponent(songName));
   $http({
     method:"GET",
     url:"/scrape"
@@ -18,10 +18,9 @@ var myApp = angular.module('myApp',[]);
 };//$scope.scrape
   }]);//scrapecontroller
 
-
   function duplicateRemover(lyrics){
     var seen = {};
       return lyrics.filter(function(item) {
-      return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+        return seen.hasOwnProperty(item) ? false : (seen[item] = true);
       });
   }//duplicateRemover
