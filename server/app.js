@@ -10,6 +10,11 @@ var domTraverser = require('./modules/domTraverser');
 app.listen('3000', function(){
   console.log('listening on 3000');
 });
+
+
+
+
+
 app.get('/',function(req, res){
   console.log('base url hit');
   res.sendFile(path.resolve('public/index.html'));
@@ -19,6 +24,7 @@ app.get('/',function(req, res){
 
 
 app.get('/scrape',function(req,res){
+  console.log(req.query.data);
 // var  url = 'http://www.azlyrics.com/lyrics/willienelson/amazinggrace.html';
 var url = 'http://www.azlyrics.com/lyrics/jeffbuckley/hallelujah.html';
 // var url = 'http://www.azlyrics.com/lyrics/rachelplatten/heyheyhallelujah.html';

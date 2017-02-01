@@ -5,18 +5,36 @@ var myApp = angular.module('myApp',[]);
     console.log('NG');
     $scope.scrape = function(artistName,songName){
       console.log('artistName: '+encodeURIComponent(artistName)+' songName: '+encodeURIComponent(songName));
+
+
+      var objectToSend = {
+        artist:spaceRemover(artistName),
+        song:spaceRemover(songName)
+      };
   $http({
     method:"GET",
-    url:"/scrape"
+    url:"/scrape",
+    params:objectToSend
+
   }).then(function(res){
-    console.log("res back",res.data);
-
-
-    $scope.song = res.data;
+    // console.log("res back",res.data);
+    $scope.song = quotationRemover(res.data);
     $scope.lyrics = duplicateRemover(res.data.lyrics);
   });//.then function
 };//$scope.scrape
   }]);//scrapecontroller
+
+
+  
+  function spaceRemover(data){
+    data = data.replace(/\s/g, '');
+    console.log(data);
+  }//spaceRemover
+
+  function quotationRemover(song){
+    song.title = song.title.replace(/\"/g, '');
+    return song;
+  }//quotationRemover
 
   function duplicateRemover(lyrics){
     var seen = {};
