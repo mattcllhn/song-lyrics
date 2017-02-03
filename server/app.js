@@ -24,7 +24,7 @@ app.get('/',function(req, res){
 
 
 app.get('/scrape',function(req,res){
-  console.log(req.query.data);
+  console.log(req.query);
 // var  url = 'http://www.azlyrics.com/lyrics/willienelson/amazinggrace.html';
 var url = 'http://www.azlyrics.com/lyrics/jeffbuckley/hallelujah.html';
 // var url = 'http://www.azlyrics.com/lyrics/rachelplatten/heyheyhallelujah.html';
@@ -37,7 +37,7 @@ request(url, function(error, response, html){
         var body = $('body').html();
         // console.log('body',body);
           objectToSend.title = $('.ringtone').next().text();
-          console.log('this is the title',objectToSend.title);
+          // console.log('this is the title',objectToSend.title);
         objectToSend.lyrics = lyricFormatter(domTraverser($('.ringtone')));
         // console.log(domTraverser($('.ringtone')));
 

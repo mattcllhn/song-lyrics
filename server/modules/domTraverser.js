@@ -5,7 +5,7 @@ function domTraverser(dataIn){
           // console.log('currentElem name', currentElem[0].name);
           var tag = currentElem[0].name;
           if (tag == 'div') {
-            console.log(currentElem.text());
+            // console.log(currentElem.text());
             i=11;
             return currentElem.html();
           }else{

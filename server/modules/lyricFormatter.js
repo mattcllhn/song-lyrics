@@ -25,7 +25,7 @@ for (var i = 0; i < lyricArray.length; i++) {
     }
   });//map method
   arrayToSend.push(verseToSend);
-  console.log('in the loop bro \n',lyricArray[i]);
+  // console.log('in the loop bro \n',lyricArray[i]);
 }
 
 }//for loop

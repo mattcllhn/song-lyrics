@@ -10,12 +10,11 @@ var myApp = angular.module('myApp',[]);
       var objectToSend = {
         artist:spaceRemover(artistName),
         song:spaceRemover(songName)
-      };
+        };
   $http({
     method:"GET",
     url:"/scrape",
     params:objectToSend
-
   }).then(function(res){
     // console.log("res back",res.data);
     $scope.song = quotationRemover(res.data);
@@ -25,10 +24,11 @@ var myApp = angular.module('myApp',[]);
   }]);//scrapecontroller
 
 
-  
+
   function spaceRemover(data){
     data = data.replace(/\s/g, '');
-    console.log(data);
+    // console.log(data);
+    return data;
   }//spaceRemover
 
   function quotationRemover(song){
