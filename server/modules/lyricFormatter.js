@@ -1,10 +1,15 @@
 function lyricFormatter(dataIn){
   var lyrics = dataIn;
   var arrayToSend = [];
+
 //takes out encoded apostrophes
 lyrics = lyrics.replace(/&apos;/g,"'");
 //takes out encoded quotation marks
-lyrics = lyrics.replace(/&quot;/g,' " ');
+lyrics = lyrics.replace(/&quot;/g,'"');
+//takes out encoded quotation marks
+lyrics = lyrics.replace(/&#x2019;/g,"'");
+//takes out encoded quotation marks
+lyrics = lyrics.replace(/&#x2018;/g,"'");
 //removes text in square brackets
 lyrics= lyrics.replace(/ *\[[^\]]*]/g, '');
 //removes html tags

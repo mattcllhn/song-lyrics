@@ -4,7 +4,8 @@ var myApp = angular.module('myApp',[]);
   myApp.controller("scrapeController",['$scope','$http',function($scope,$http){
     console.log('NG');
     $scope.scrape = function(artistName,songName){
-      console.log('artistName: '+encodeURIComponent(artistName)+' songName: '+encodeURIComponent(songName));
+      
+      // console.log('artistName: '+encodeURIComponent(artistName)+' songName: '+encodeURIComponent(songName));
 
 
       var objectToSend = {
@@ -26,9 +27,10 @@ var myApp = angular.module('myApp',[]);
 
 
   function spaceRemover(data){
-    data = data.replace(/\s/g, '');
+    inputText = data || '';
+    inputText = inputText.replace(/\s/g, '');
     // console.log(data);
-    return data;
+    return inputText;
   }//spaceRemover
 
   function quotationRemover(song){

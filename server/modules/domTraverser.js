@@ -1,5 +1,6 @@
 function domTraverser(dataIn){
-          var currentElem = dataIn.next();
+          var currentElem = dataIn.next()|| '';
+
           // console.log($('.ringtone').next($('div'))[0].name);
         for (var i = 0; i<10; i++) {
           // console.log('currentElem name', currentElem[0].name);
